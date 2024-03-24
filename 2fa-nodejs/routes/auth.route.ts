@@ -10,4 +10,7 @@ router.post("/verify-otp", authController.VerifyOTP);
 router.post("/validate-otp", authController.ValidateOTP);
 router.post("/disable-otp", authController.DisableOTP);
 
+
+
+
 export default router;
