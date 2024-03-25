@@ -78,12 +78,12 @@ const LoginPage = () => {
   };
 
   return (
-    <section className="bg-ct-blue-600 min-h-screen grid place-items-center">
-      <div className="w-full">
-        <h1 className="text-4xl lg:text-6xl text-center font-[600] text-ct-yellow-600 mb-4">
-          Welcome Back
-        </h1>
-        <h2 className="text-lg text-center mb-4 text-ct-dark-200">
+    <section className="bg-white min-h-screen grid place-items-center">
+      <div className="text-center">
+        {/* <h1 className="text-4xl lg:text-6xl text-center font-[600] text-white bg-green-600 mb-4">
+          Welcome
+        </h1> */}
+        <h2 className="text-xl text-center mb-4 text-green-600">
           Login to have access
         </h2>
         <FormProvider {...methods}>
@@ -101,20 +101,25 @@ const LoginPage = () => {
             </div>
             <LoadingButton
               loading={store.requestLoading}
-              textColor="text-ct-blue-600"
+              textColor="text-white"
             >
               Login
             </LoadingButton>
             <span className="block">
-              Need an account?{" "}
-              <Link to="/register" className="text-ct-blue-600">
+							<span>
+								Don't have an account?{" "}
+							</span>
+							<Link to="/register" className="text-ct-blue-600">
                 Sign Up Here
               </Link>
-            </span>
+						</span>
+            
           </form>
         </FormProvider>
       </div>
+      
     </section>
+    
   );
 };
 

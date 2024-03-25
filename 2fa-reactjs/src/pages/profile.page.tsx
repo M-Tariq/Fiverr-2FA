@@ -94,24 +94,40 @@ const ProfilePage = () => {
 
   return (
     <>
-      <section className="bg-ct-blue-600  min-h-screen pt-10">
-        <div className="max-w-4xl p-12 mx-auto bg-ct-dark-100 rounded-md h-[20rem] flex gap-20 justify-center items-start">
-          <div className="flex-grow-2">
-            <h1 className="text-2xl font-semibold">Profile Page</h1>
-            <div className="mt-8">
-              <p className="mb-4">ID: {user?.id}</p>
-              <p className="mb-4">Name: {user?.name}</p>
-              <p className="mb-4">Email: {user?.email}</p>
-            </div>
+      {
+      <div className="max-w-md mx-auto p-8">
+      <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="text-center mb-4">
+          <h2 className="text-2xl font-bold">Profile</h2>
+        </div>
+        <div>
+          <label className="block mb-2 text-sm font-bold">ID: </label>
+          <div className="border border-gray-300 rounded-md px-3 py-2 mb-4">
+            <span>{user?.id}</span>
           </div>
-          <div>
-            <h3 className="text-2xl font-semibold">
-              Mobile App Authentication (2FA)
-            </h3>
-            <p className="mb-4">
-              Secure your account with TOTP two-factor authentication.
-            </p>
-            {store.authUser?.otp_enabled ? (
+        </div>
+        <div>
+              <label className="block mb-2 text-sm font-bold">Email:</label>
+          <div className="border border-gray-300 rounded-md px-3 py-2 mb-4">
+            <span> { user?.email}</span>
+          </div>
+        </div>
+        <div>
+              <label className="block mb-2 text-sm font-bold">Name: </label>
+          <div className="border border-gray-300 rounded-md px-3 py-2 mb-4">
+            <span>{ user?.name}</span>
+          </div>
+            </div>
+            
+            
+        <div>
+          <label className="block mb-2 text-sm font-bold">Mobile App Authentication (2FA)</label>
+          <div className="border border-gray-300 rounded-md px-3 py-2 mb-4">
+            <span>Secure your account with TOTP two-factor authentication</span>
+          </div>
+        </div>
+        <div className="text-center">
+        {store.authUser?.otp_enabled ? (
               <button
                 type="button"
                 className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
@@ -130,9 +146,11 @@ const ProfilePage = () => {
                 Setup 2FA
               </button>
             )}
-          </div>
         </div>
-      </section>
+      </div>
+    </div>
+      
+      }
       {openModal && (
         <TwoFactorAuth
           base32={secret.base32}
