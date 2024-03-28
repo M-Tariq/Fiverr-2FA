@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FormInput from "../components/FormInput";
+import Signup from "../assets/signup.jpg";
 import { LoadingButton } from "../components/LoadingButton";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -78,47 +79,46 @@ const LoginPage = () => {
   };
 
   return (
-    <section className="bg-white min-h-screen grid place-items-center">
-      <div className="text-center">
-        {/* <h1 className="text-4xl lg:text-6xl text-center font-[600] text-white bg-green-600 mb-4">
-          Welcome
-        </h1> */}
-        <h2 className="text-xl text-center mb-4 text-green-600">
-          Login to have access
-        </h2>
-        <FormProvider {...methods}>
-          <form
-            onSubmit={handleSubmit(onSubmitHandler)}
-            className="max-w-md w-full mx-auto overflow-hidden shadow-lg bg-ct-dark-200 rounded-2xl p-8 space-y-5"
-          >
-            <FormInput label="Email" name="email" type="email" />
-            <FormInput label="Password" name="password" type="password" />
-
-            <div className="text-right">
-              <Link to="/forgotpassword" className="">
-                Forgot Password?
-              </Link>
-            </div>
-            <LoadingButton
-              loading={store.requestLoading}
-              textColor="text-white"
-            >
-              Login
-            </LoadingButton>
-            <span className="block">
-							<span>
-								Don't have an account?{" "}
-							</span>
-							<Link to="/register" className="text-ct-blue-600">
-                Sign Up Here
-              </Link>
-						</span>
-            
-          </form>
-        </FormProvider>
-      </div>
+<section className="bg-white min-h-screen flex justify-center items-center p-8">
+  <div className="w-full md:w-3/4 lg:w-1/2 bg-white rounded-lg shadow-lg flex flex-col md:flex-row">
+    <div className="w-full md:w-1/2 hidden md:flex justify-center items-center">
+      <img src={Signup} alt="Login Illustration" className="h-full" />
+    </div>
+    <div className="w-full md:w-1/2 p-8 bg-gray-100 flex flex-col justify-center items-center">
+      <h2 className="text-2xl lg:text-2xl font-semibold text-green-600 mb-6">
+        Login to have access
+      </h2>
       
-    </section>
+      <form
+        onSubmit={handleSubmit(onSubmitHandler)}
+        className="overflow-hidden space-y-6 w-full"
+      >
+        <FormProvider {...methods}>
+          <FormInput label="Email" name="email" type="email" />
+          <FormInput label="Password" name="password" type="password" />
+          <div className="text-right">
+            <Link to="/forgotpassword" className="text-gray-600 hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none hover:bg-blue-800 transition-colors duration-300"
+          >
+            {store.requestLoading ? "Logging In..." : "Login"}
+          </button>
+        </FormProvider>
+      </form>
+      <p className="mt-4 text-sm text-gray-600">
+        Don't have an account?{" "}
+        <Link to="/register" className="text-green-600 hover:underline">
+          Sign Up Here
+        </Link>
+      </p>
+    </div>
+  </div>
+</section>
+
     
   );
 };

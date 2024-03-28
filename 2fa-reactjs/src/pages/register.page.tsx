@@ -2,6 +2,7 @@ import { object, string, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { useEffect } from "react";
+import Signup from "../assets/signup.jpg";
 import FormInput from "../components/FormInput";
 import { LoadingButton } from "../components/LoadingButton";
 import { toast } from "react-toastify";
@@ -80,47 +81,43 @@ const RegisterPage = () => {
   };
 
   return (
-    <section className="py-8 bg-white bg-green min-h-screen grid place-items-center">
-      <div className="w-full">
-      {/* <h1 className="text-4xl lg:text-6xl text-center font-[600] text-white bg-green-600 mb-4">
-          Welcome
-        </h1> */}
-        {/* <h2 className="text-lg text-center mb-4 text-ct-dark-200">
-          Sign Up To Get Started!
-        </h2> */}
-
-
-<h2 className="text-xl text-center mb-4 text-green-600">
-Sign Up To Get Started!
-        </h2>
-      
-        <FormProvider {...methods}>
+    <section className="p-8 flex justify-center items-center h-screen">
+      <div className="w-full md:w-3/4 lg:w-1/2 bg-white rounded-lg shadow-area flex flex-col md:flex-row">
+        <div className="w-full md:w-1/2 hidden md:flex justify-center items-center shadow-lg bg-gray-100">
+          <img src={Signup} alt="Signup Illustration" className="h-full object-cover w-full" />
+        </div>
+        <div className="w-full md:w-1/2 p-8 bg-gray-100 flex flex-col justify-center items-center">
+          <h2 className="text-2xl lg:text-2xl font-semibold text-green-600 mb-6">
+            Sign Up To Get Started
+          </h2>
           <form
             onSubmit={handleSubmit(onSubmitHandler)}
-            className="max-w-md w-full mx-auto overflow-hidden shadow-lg bg-ct-dark-200 rounded-2xl p-8 space-y-5"
+            className="overflow-hidden space-y-6 w-full"
           >
-            <FormInput label="Full Name" name="name" />
-            <FormInput label="Email" name="email" type="email" />
-            <FormInput label="Password" name="password" type="password" />
-            <FormInput
-              label="Confirm Password"
-              name="passwordConfirm"
-              type="password"
-            />
-            <span className="block">
-              Already have an account?{" "}
-              <Link to="/login" className="text-ct-blue-600">
-                Login Here
-              </Link>
-            </span>
-            <LoadingButton
-              loading={store.requestLoading}
-              textColor="text-white"
-            >
-              Sign Up
-            </LoadingButton>
+            <FormProvider {...methods}>
+              <FormInput label="Full Name" name="name" />
+              <FormInput label="Email" name="email" type="email" />
+              <FormInput label="Password" name="password" type="password" />
+              <FormInput
+                label="Confirm Password"
+                name="passwordConfirm"
+                type="password"
+              />
+              <button
+                type="submit"
+                className="w-full bg-green-600 text-white py-2 px-4 rounded-lg focus:outline-none hover:bg-blue-800 transition-colors duration-300"
+              >
+                {store.requestLoading ? "Signing Up..." : "Sign Up"}
+              </button>
+            </FormProvider>
           </form>
-        </FormProvider>
+          <p className="mt-4 text-sm text-gray-600">
+            Already have an account?{" "}
+            <Link to="/login" className="text-green-600 hover:underline">
+              Login Here
+            </Link>
+          </p>
+        </div>
       </div>
     </section>
   );
